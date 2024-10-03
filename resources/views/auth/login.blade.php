@@ -6,23 +6,19 @@
         @csrf
 
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <<div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Login') }}</div>
+    
+                        <div class="card-body">
+                            @isset($url)
+                            <form method="POST" action='{{ url("login/$url") }}' aria-label="{{ __('Login') }}">
+                            @else
+                            <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                            @endisset
+                                @csrf
 
         <!-- Remember Me -->
         <div class="block mt-4">

@@ -1,20 +1,22 @@
 <?php
 
-Route::view('/', 'welcome');
-Auth::routes();
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
-Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+Route::get('/', function () {
+    return view('student.index');
+});
 
-Route::get('/login/writer', 'Auth\LoginController@showWriterLoginForm');
-Route::post('/login/writer', 'Auth\LoginController@writerLogin');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
-Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/register/writer', 'Auth\RegisterController@showWriterRegisterForm');
-Route::post('/register/writer', 'Auth\RegisterController@createWriter');
 
-Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin', 'admin')->middleware('auth:admin');
-Route::view('/writer', 'writer')->middleware('auth:writer');
+
+require __DIR__.'/auth.php';

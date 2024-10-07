@@ -11,12 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        
         $middleware->alias([
-            'warden' => \App\Http\Middleware\Role::class,
+            'role' => \App\Http\Middleware\Role::class,  // Use 'role' alias, not 'warden'
         ]);
-
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // Handle exceptions here
     })->create();
+

@@ -12,15 +12,16 @@ class Role
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string[]  ...$roles
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if(Auth::user()->role != 'warden'){
-            return redirect('/student');
+        if (!Auth::check() || !in_array(Auth::user()->role, $roles)) {
+            return redirect('/nobruh');  // or any other default route for unauthorized access
         }
-
-
 
         return $next($request);
     }

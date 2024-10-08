@@ -6,7 +6,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MppController;
 use App\Http\Controllers\ErrorController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 
 Route::get('/', function () {
     return view('welcome');

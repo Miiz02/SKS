@@ -5,7 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    #imageModal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #modalImage {
+        max-width: 80%;
+        max-height: 80%;
+        margin: auto;
+        display: block;
+    }
+</style>
+
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -19,12 +57,16 @@
           <li class="nav-item">
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               @csrf
-          </form>
-          
-          <a class="nav-link active" aria-current="page" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            </form>
+            <a class="nav-link active" aria-current="page" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               Log out
-          </a>
-          
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('student.create') }}">Create Attendance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('student.dashboard') }}">Dashboard</a> <!-- Add this line for Dashboard -->
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>

@@ -73,8 +73,9 @@
 
             <!-- Sign Up Link -->
             <div class="signup-link mt-4">
-                Not a member?&nbsp;<a href="#">Sign Up</a>
+                Not a member?&nbsp;<a href="{{ route('register') }}">Sign Up</a>
             </div>
+            
         </div>
     </div>
 </body>

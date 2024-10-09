@@ -4,80 +4,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('design-sekas/css/loginstyle copy.css') }}">
-   
+    <title>Sign In / Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('design/css/login.css') }}">
 </head>
 
 <body>
     <!-- TITLE -->
-    <h1>SISTEM <br>KEHADIRAN SURAU</h1>
+    <div class="title-container">
+        <h2>SISTEM<br>KEHADIRAN SURAU</h2>
+    </div>
 
-    <div class="container">
-        <!-- Image Section -->
-        <div class="image-section">
-            <img src="{{ asset('design-sekas/img/GIBS.png') }}" alt="GIBS Logo">
-        </div>
-
-        <!-- Form Section -->
-        <div class="form-section">
-            <div class="header-section">
-                <h2>LOGIN</h2>
-            </div>
-
-            <!-- Laravel Form Handling Logic -->
+    <div class="container" id="container">
+        <!-- Login Form Section -->
+        <div class="form-container sign-in-container">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
+                <div class="title8">
+                    <h1>Sign In</h1>
+                </div>
 
                 <!-- Email Address -->
-                <div class="form-group">
-                    <label for="email">EMAIL</label>
-                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="Enter your email">
-                    <!-- Error Display for Email -->
+                <label for="login-email" class="inp">
+                    <input id="login-email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="&nbsp;">
+                    <span class="label">Email</span>
+                    <span class="focus-bg"></span>
                     @if($errors->has('email'))
                         <span class="error-message">{{ $errors->first('email') }}</span>
                     @endif
-                </div>
+                </label>
 
                 <!-- Password -->
-                <div class="form-group mt-4">
-                    <label for="password">PASSWORD</label>
-                    <input id="password" type="password" class="form-control" name="password" required placeholder="Enter your password">
-                    <!-- Error Display for Password -->
+                <label for="login-password" class="inp">
+                    <input id="login-password" type="password" class="form-control" name="password" required placeholder="&nbsp;">
+                    <span class="label">Password</span>
+                    <span class="focus-bg"></span>
+                    <button type="button" class="toggle-password">
+                        <i class="fas fa-eye"></i>
+                    </button>
                     @if($errors->has('password'))
                         <span class="error-message">{{ $errors->first('password') }}</span>
                     @endif
-                </div>
+                </label>
+
+                <!-- Forgot Password Link -->
+                <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn mt-4">Sign In</button>
-
-                <!-- Remember Me Checkbox and Forgot Password -->
-                <div class="options mt-4">
-                    <!-- Remember Me -->
-                    <div class="remember-me">
-                        <input id="remember_me" type="checkbox" name="remember">
-                        <label for="remember_me">Remember Me</label>
-                    </div>
-
-                    <!-- Forgot Password Link -->
-                    <div class="forgot-password">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}">Forgot Password?</a>
-                        @endif
-                    </div>
-                </div>
+                <button type="submit">Sign In</button>
             </form>
+        </div>
 
-            <!-- Sign Up Link -->
-            <div class="signup-link mt-4">
-                Not a member?&nbsp;<a href="{{ route('register') }}">Sign Up</a>
-            </div>
+        <!-- Register Form Section -->
+        <div class="form-container sign-up-container">
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+            
+                <!-- Name -->
+                <label for="name" class="inp">
+                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                    <span class="label">Name</span>
+                    @if($errors->has('name'))
+                        <span class="error-message">{{ $errors->first('name') }}</span>
+                    @endif
+                </label>
+            
+                <!-- Email -->
+                <label for="email" class="inp">
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+                    <span class="label">Email</span>
+                    @if($errors->has('email'))
+                        <span class="error-message">{{ $errors->first('email') }}</span>
+                    @endif
+                </label>
+            
+                <!-- Password -->
+                <label for="password" class="inp">
+                    <input id="password" type="password" name="password" required>
+                    <span class="label">Password</span>
+                    @if($errors->has('password'))
+                        <span class="error-message">{{ $errors->first('password') }}</span>
+                    @endif
+                </label>
+            
+                <!-- Password Confirmation -->
+                <label for="password_confirmation" class="inp">
+                    <input id="password_confirmation" type="password" name="password_confirmation" required>
+                    <span class="label">Confirm Password</span>
+                </label>
+            
+                <!-- Submit -->
+                <button type="submit">Register</button>
+            </form>
             
         </div>
+
+        <!-- Overlay Section -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Already Set?</h1>
+                    <p>To keep connected, please sign in with your registered identity</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Welcome, Friend!</h1>
+                    <p>Are you a new student? Click the sign-up button to register!</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <p>Sistem Kehadiran Surau &copy; 2024</p>
+    </footer>
+
+    <!-- JavaScript for password toggle functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+
+            togglePasswordButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Get the input field by going up to the closest label and then finding the input inside it
+                    const passwordInput = this.closest('label').querySelector('input');
+
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        this.querySelector('i').classList.remove('fa-eye');
+                        this.querySelector('i').classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        this.querySelector('i').classList.remove('fa-eye-slash');
+                        this.querySelector('i').classList.add('fa-eye');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="{{ asset('design/js/toggle.js') }}"></script>
+    <script src="{{ asset('design/js/script.js') }}"></script>
 </body>
 
 </html>

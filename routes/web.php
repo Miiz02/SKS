@@ -46,5 +46,12 @@ Route::middleware(['role:mpp'])->group(function () {
     Route::get('/mpp', [MppController::class, 'index'])->name('mpp.dashboard');
 });
 
+
+// Display registration form
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegisterForm'])->name('register');
+
+// Handle registration form submission
+Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'createStudent']);
+
 // Include additional authentication routes
 require __DIR__.'/auth.php';

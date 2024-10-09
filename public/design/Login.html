@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="slide navbar style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/login.css">
+
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+
+	<div class="title-container">
+		<h2>SISTEM<br>KEHADIRAN SURAU</h2>
+	</div>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="#">
+				<div class="title7">
+					<h1>Create Account</h1>
+				</div>
+
+				<label for="name" class="inp">
+					<input type="text" id="name" placeholder="&nbsp;">
+					<span class="label">Name</span>
+					<span class="focus-bg"></span>
+				</label>
+
+
+				<label for="email" class="inp">
+					<input type="email" id="email" placeholder="&nbsp;">
+					<span class="label">Email</span>
+					<span class="focus-bg"></span>
+				</label>
+
+				<label for="password" class="inp">
+					<input type="password" id="password" placeholder="&nbsp;">
+					<span class="label">Password</span>
+					<span class="focus-bg"></span>
+				<button type="button" class="toggle-password">
+					<i class="fas fa-eye"></i>
+				</button>
+				</label>
+				
+
+				<label for="confirm_password" class="inp">
+					<input type="password" id="confirm_password" placeholder="&nbsp;">
+					<span class="label">Confirm Password</span>
+					<span class="focus-bg"></span>
+				<button type="button" class="toggle-password">
+					<i class="fas fa-eye"></i>
+				</button>
+				</label>
+				
+
+				<button class="sign-up">Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form action="#">
+				<div class="title8">
+					<h1>Sign in</h1>
+				</div>
+				<label for="email" class="inp">
+					<input type="email" id="email" placeholder="&nbsp;">
+					<span class="label">Email</span>
+					<span class="focus-bg"></span>
+				</label>
+
+				<label for="password" class="inp">
+					<input type="password" id="password" placeholder="&nbsp;">
+					<span class="label">Password</span>
+					<span class="focus-bg"></span>
+				<button type="button" class="toggle-password">
+					<i class="fas fa-eye"></i>
+				</button>
+				</label>
+				
+
+				<a href="#" class="forgot-password">Forgot your password?</a>
+				<button>Sign In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Already Set?</h1>
+					<p>To keep connected, please signin with your registered identity </p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Welcome, Friend!</h1>
+					<p>Are you a new student? , Click sign-up button to Register!</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<p>
+			Sistem Kehadiran Surau &copy; 2024
+		</p>
+	</footer>
+
+	<!-- Script Funtion -->
+	<script src="js/script.js"></script>
+	<script src="js/toggle.js"></script>
+</body>
+
+</html>

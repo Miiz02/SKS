@@ -2,54 +2,43 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Admin;
-use App\Writer;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    public function __construct()
+    public function showRegisterForm()
     {
-        $this->middleware('guest');
-        $this->middleware('guest:admin');
-        $this->middleware('guest:writer');
+        return view('auth.register'); // Your registration form view
     }
 
-
-    public function showAdminRegisterForm()
+    public function createStudent(Request $request)
     {
-        return view('auth.register', ['url' => 'admin']);
-    }
-
-    public function showWriterRegisterForm()
-    {
-        return view('auth.register', ['url' => 'writer']);
-    }
-
-    protected function createAdmin(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $admin = Admin::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+        // Validate the request
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-        return redirect()->intended('login/admin');
-    }
 
-    protected function createStudent(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $student = Student::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+        // If validation fails, redirect back to the registration form with errors and old input
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator) // Pass the validation errors
+                ->withInput(); // Retain old input
+        }
+
+        // If validation passes, create the user
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('login/student');
-}
+
+        // Redirect to login page with success message
+        return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
+    }
 }

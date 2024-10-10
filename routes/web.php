@@ -16,41 +16,40 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Profile Management
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Error Handling
 Route::get('/nobruh', [ErrorController::class, 'index'])->name('error.error');
 
 // Logout route
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-// Only allow 'warden' role
+// Warden Role Routes
 Route::middleware(['role:warden'])->group(function () {
     Route::get('/warden', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
-// Student routes
+// Student Routes
 Route::middleware(['role:student'])->group(function () {
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
-    
-    // Routes for attendance
     Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
     Route::post('/student', [StudentController::class, 'store'])->name('student.store');
 });
 
-// Allow both 'warden' and 'teacher' roles
+// MPP Role Routes
 Route::middleware(['role:mpp'])->group(function () {
     Route::get('/mpp', [MppController::class, 'index'])->name('mpp.dashboard');
+    Route::post('/mpp/store', [MppController::class, 'store'])->name('mpp.store');
+    Route::post('/mpp/confirm/{id}', [MppController::class, 'confirm'])->name('mpp.confirm');
 });
 
-
-// Display registration form
+// Registration Routes
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegisterForm'])->name('register');
-
-// Handle registration form submission
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'createStudent']);
 
 // Include additional authentication routes

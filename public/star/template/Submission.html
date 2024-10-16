@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Sekas | Penyerahan</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/feather/feather.css">
+  <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="vendors/typicons/typicons.css">
+  <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="/celestialAdmin-free-admin-template-1.0.0/template/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="images/favicon.png" />
+
+  <style>
+  .table th {
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .table th div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .table th span {
+    margin-right: 5px; /* Space between text and dropdown */
+  }
+ </style>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" href="index.html"><img src="images/logo.svg" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-top">
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item  d-none d-lg-flex">
+            <a class="nav-link" href="#">
+            </a>
+          </li>
+          <li class="nav-item  d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              LAMAN UTAMA
+            </a>
+          </li>
+          <li class="nav-item  d-none d-lg-flex">
+            <a class="nav-link active" href="#">
+              PENYERAHAN
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown d-flex">
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+              id="messageDropdown" href="#" data-toggle="dropdown">
+              <i class="typcn typcn-message-typing"></i>
+              <span class="count bg-success">2</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+              aria-labelledby="messageDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                  </h6>
+                  <p class="font-weight-light small-text mb-0">
+                    The meeting is cancelled
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                  </h6>
+                  <p class="font-weight-light small-text mb-0">
+                    New product launch
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                  </h6>
+                  <p class="font-weight-light small-text mb-0">
+                    Upcoming board meeting
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown  d-flex">
+            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
+              id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="typcn typcn-bell mr-0"></i>
+              <span class="count bg-danger">2</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+              aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="typcn typcn-info-large mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="typcn typcn-cog mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="typcn typcn-user-outline mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+            <a class="nav-link" id="UserDropdown" href="#" d data-bs-toggle="dropdown" aria-expanded="false">
+              <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"></a>
+            <span class="nav-profile-name">Evan Morales</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item"><i class="typcn typcn-cog text-primary"></i>Tetapan</a>
+              <a class="dropdown-item"><i class="typcn typcn-power text-primary"></i>Log-Keluar</a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
+          <span class="typcn typcn-th-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+
+      <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+              aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+              aria-controls="chats-section">CHATS</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="setting-content">
+          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel"
+            aria-labelledby="todo-section">
+            <div class="add-items d-flex px-3 mb-0">
+              <form class="form w-100">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+                </div>
+              </form>
+            </div>
+            <div class="list-wrapper px-3">
+              <ul class="d-flex flex-column-reverse todo-list">
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Team review meeting at 3.00 PM
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Prepare for presentation
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Resolve all the low priority tickets due today
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Schedule meeting for next week
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Project review
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+              </ul>
+            </div>
+            <h4 class="px-3 text-muted mt-5 fw-light mb-0">Events</h4>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary me-2"></i>
+                <span>Feb 11 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+              <p class="text-gray mb-0">The total number of sessions</p>
+            </div>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary me-2"></i>
+                <span>Feb 7 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+              <p class="text-gray mb-0 ">Call Sarah Graves</p>
+            </div>
+          </div>
+          <!-- To do section tab ends -->
+          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 fw-normal">See All</small>
+            </div>
+            <ul class="chat-list">
+              <li class="list active">
+                <div class="profile"><img src="images/faces/face1.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Thomas Douglas</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">19 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="images/faces/face2.jpg" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <div class="wrapper d-flex">
+                    <p>Catherine</p>
+                  </div>
+                  <p>Away</p>
+                </div>
+                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                <small class="text-muted my-auto">23 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="images/faces/face3.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Daniel Russell</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">14 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="images/faces/face4.jpg" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <p>James Richardson</p>
+                  <p>Away</p>
+                </div>
+                <small class="text-muted my-auto">2 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="images/faces/face5.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Madeline Kennedy</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">5 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="images/faces/face6.jpg" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Sarah Graves</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">47 min</small>
+              </li>
+            </ul>
+          </div>
+          <!-- chat tab ends -->
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <div class="d-flex sidebar-profile">
+              <div class="sidebar-profile-image">
+                <img src="images/faces/face8.jpg" alt="image">
+              </div>
+              <div class="sidebar-profile-name">
+                <p class="sidebar-name">
+                  Muhammad Hazeq
+                </p>
+                <p class="sidebar-designation fw-bold">
+                  Pelajar
+                </p>
+                <p class="sidebar-designation fw-bold">
+                  F04 (Software Development)
+                </p>
+                <p class="sidebar-designation fw-bold">
+                  22123003
+                </p>
+
+              </div>
+            </div>
+          </li>
+          <li class="nav-item nav-category">Main Pages</li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-account-circle-outline"></i>
+              <span class="menu-title">Profil</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Laman Utama</span>
+            </a>
+          </li>
+
+          <li class="nav-item nav-category">Rekod Kehadiran</li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="mdi mdi-library-plus menu-icon"></i>
+              <span class="menu-title">Tambah Rekod</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="pages/tables/confirmation.html" aria-expanded="false"
+              aria-controls="ui-basic">
+              <i class="mdi mdi-code-not-equal -grid-large menu-icon"></i>
+              <span class="menu-title">Penyerahan</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item nav-category">Pilihan</li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-brightness-7 -grid-large menu-icon"></i>
+              <span class="menu-title">Tetapan</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-logout-variant -large menu-icon"></i>
+              <span class="menu-title">Log - Keluar</span>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="home-tab">
+                <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                      <h1 style="font-weight: bold; padding-left: 30px;">Penyerahan Kehadiran</h1>
+                    </li>
+                  </ul>
+                  <div>
+                    <div class="btn-wrapper">
+                      <a href="#" class="btn btn-otline-dark"><i class="icon-printer"></i> Print</a>
+                      <a href="#" class="btn btn-primary text-white me-0"><i class="icon-download"></i> Export</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-content tab-content-basic">
+
+                  <!-- Your data table here -->
+                  <div class="card card-rounded">
+                    <div class="card-body">
+                      <div class="table-responsive">
+
+                        <div class="table-responsive">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>
+                                      <div style="display: flex; align-items: center;">
+                                        <span style="margin-right: 5px;">Name</span>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn rounded-3 wrapper"
+                                            type="button"
+                                            id="dropdownMenuButton1"
+                                            data-bs-toggle="dropdown"
+                                            data-hover="dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <i class="mdi mdi-arrow-down"></i>
+                                          </button>
+                                          <ul
+                                            class="dropdown-menu dropdown-menu-end"
+                                            aria-labelledby="dropdownMenuButton1"
+                                          >
+                                            <li><a class="dropdown-item" onclick="filterAll()">All</a></li>
+                                            <li><a class="dropdown-item" onclick="filterPassed()">Passed</a></li>
+                                            <li><a class="dropdown-item" onclick="filterFailed()">Failed</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </th>
+                                    <th>
+                                      <div style="display: flex; align-items: center;">
+                                        <span style="margin-right: 5px;">NDP</span>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn rounded-3 wrapper"
+                                            type="button"
+                                            id="dropdownMenuButton2"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <i class="mdi mdi-arrow-down"></i>
+                                          </button>
+                                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
+                                            <li><a class="dropdown-item" onclick="filterAll()">All</a></li>
+                                            <li><a class="dropdown-item" onclick="filterPassed()">Passed</a></li>
+                                            <li><a class="dropdown-item" onclick="filterFailed()">Failed</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </th>
+                                    <th>
+                                      <div style="display: flex; align-items: center;">
+                                        <span style="margin-right: 5px;">Kursus</span>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn rounded-3 wrapper"
+                                            type="button"
+                                            id="dropdownMenuButton3"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <i class="mdi mdi-arrow-down"></i>
+                                          </button>
+                                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton3">
+                                            <li><a class="dropdown-item" onclick="filterAll()">All</a></li>
+                                            <li><a class="dropdown-item" onclick="filterPassed()">Passed</a></li>
+                                            <li><a class="dropdown-item" onclick="filterFailed()">Failed</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </th>
+                                    <th>
+                                      <div style="display: flex; align-items: center;">
+                                        <span style="margin-right: 5px;">Semester</span>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn rounded-3 wrapper"
+                                            type="button"
+                                            id="dropdownMenuButton4"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <i class="mdi mdi-arrow-down"></i>
+                                          </button>
+                                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton4">
+                                            <li><a class="dropdown-item" onclick="filterAll()">All</a></li>
+                                            <li><a class="dropdown-item" onclick="filterPassed()">Passed</a></li>
+                                            <li><a class="dropdown-item" onclick="filterFailed()">Failed</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </th>
+                                    <th>
+                                      <div style="display: flex; align-items: center;">
+                                        <span style="margin-right: 5px;">Sebab</span>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn rounded-3 wrapper"
+                                            type="button"
+                                            id="dropdownMenuButton5"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <i class="mdi mdi-arrow-down"></i>
+                                          </button>
+                                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton5">
+                                            <li><a class="dropdown-item" onclick="filterAll()">All</a></li>
+                                            <li><a class="dropdown-item" onclick="filterPassed()">Passed</a></li>
+                                            <li><a class="dropdown-item" onclick="filterFailed()">Failed</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </th>
+                                    <th>
+                                      <div style="display: flex; align-items: center;">
+                                        <span style="margin-right: 5px;">Masa</span>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn rounded-3 wrapper"
+                                            type="button"
+                                            id="dropdownMenuButton6"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <i class="mdi mdi-arrow-down"></i>
+                                          </button>
+                                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton6">
+                                            <li><a class="dropdown-item" onclick="filterAll()">All</a></li>
+                                            <li><a class="dropdown-item" onclick="filterPassed()">Passed</a></li>
+                                            <li><a class="dropdown-item" onclick="filterFailed()">Failed</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </th>
+                                    <th>
+                                      <div style="display: flex; align-items: center;">
+                                        <span style="margin-right: 5px;">Tarikh</span>
+                                        <div class="dropdown">
+                                          <button
+                                            class="btn rounded-3 wrapper"
+                                            type="button"
+                                            id="dropdownMenuButton7"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                          >
+                                            <i class="mdi mdi-arrow-down"></i>
+                                          </button>
+                                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton7">
+                                            <li><a class="dropdown-item" onclick="filterAll()">All</a></li>
+                                            <li><a class="dropdown-item" onclick="filterPassed()">Passed</a></li>
+                                            <li><a class="dropdown-item" onclick="filterFailed()">Failed</a></li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </th>
+                                    <th>Lihat</th>
+                                  </tr>
+                                </thead>                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Muhammad Hazeq bin mohd sohaimi</td>
+                                <td>22123003</td>
+                                <td>F04 (Teknologi Komputer Sistem)</td>
+                                <td>1</td>
+                                <td>Demam Kus-Kus</td>
+                                <td>9:59 PM</td>
+                                <td>11/10/2030</td>
+                                <td> <i class="mdi mdi-eye" style="font-size: 1.5rem; "></i> </td>
+                                <td><label class="btn btn-badge text-white badge-success fw-bold">Edit</label></td>
+                                <td><label class="btn btn-primary text-white me-0 fw-bold">Confirm</label></td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>Shamma bin priyan</td>
+                                <td>22123003</td>
+                                <td>F04 110</td>
+                                <td>3</td>
+                                <td>Sakit Kronik</td>
+                                <td>8:00 PM</td>
+                                <td>11/10/2030</td>
+                                <td> <i class="mdi mdi-eye" style="font-size: 1.5rem;"></i> </td>
+                                <td><label class="btn btn-badge text-white badge-success fw-bold">Edit</label></td>
+                                <td><label class="btn btn-primary text-white me-0 fw-bold">Confirm</label></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Muhammad Hazeq bin mohd sohaimi</td>
+                                <td>22123003</td>
+                                <td>F04 (Teknologi Komputer Sistem)</td>
+                                <td>2</td>
+                                <td>Macam Biasa</td>
+                                <td>7:60 PM</td>
+                                <td>11/10/2030</td>
+                                <td> <i class="mdi mdi-eye" style="font-size: 1.5rem;"></i> </td>
+                                <td><label class="btn btn-badge text-white badge-success fw-bold">Edit</label></td>
+                                <td><label class="btn btn-primary text-white me-0 fw-bold">Confirm</label></td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Designed by<a
+                href="https://www.linkedin.com/in/muhd-hazeq-39b107299/" target="_blank">Zeqks</a> feel free to
+              contact.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Sekas &copy; 2024 | All rights
+              reserved.</span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <script>
+
+    function filterAll() {
+      var table, tr, i, j;
+      table = document.getElementById("userDetails");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+          tr[i].style.display = "";
+        }
+      }
+    }
+
+    function filterPassed() {
+      var status, found, table, tr, td, i, j;
+      status = "Passed";
+      table = document.getElementById("userDetails");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+          if (td[j].textContent == status) {
+            found = true;
+          }
+        }
+        if (found) {
+          tr[i].style.display = "";
+          found = false;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+
+    function filterFailed() {
+      var status, found, table, tr, td, i, j;
+      status = "Failed";
+      table = document.getElementById("userDetails");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (j = 0; j < td.length; j++) {
+          if (td[j].textContent == status) {
+            found = true;
+          }
+        }
+        if (found) {
+          tr[i].style.display = "";
+          found = false;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+
+</script>
+
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="vendors/chart.js/Chart.min.js"></script>
+  <script src="vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+  <script src="vendors/progressbar.js/progressbar.min.js"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/hoverable-collapse.js"></script>
+  <script src="js/template.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- plugin js for this page -->
+  <script src="vendors/progressbar.js/progressbar.min.js"></script>
+  <script src="vendors/chart.js/Chart.min.js"></script>
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <script src="js/Chart.roundedBarCharts.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>

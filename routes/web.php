@@ -12,14 +12,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Dashboard route with middleware for authenticated users
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Profile Management
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+// Profile Management for Students
+// Profile Management for Students
+Route::middleware(['auth', 'role:student'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
@@ -39,6 +41,7 @@ Route::middleware(['role:student'])->group(function () {
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
     Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
     Route::post('/student', [StudentController::class, 'store'])->name('student.store');
+    Route::get('/profile/view', [ProfileController::class, 'show'])->name('student.view');
 });
 
 // MPP Role Routes

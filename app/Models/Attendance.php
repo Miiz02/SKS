@@ -16,6 +16,11 @@ class Attendance extends Model
         'picture',
     ];
 
+    // Define the casts for the model attributes
+    protected $casts = [
+        'timestamp' => 'datetime', // Cast 'timestamp' to a Carbon instance
+    ];
+
     // Define the relationship with the User model
     public function user()
     {

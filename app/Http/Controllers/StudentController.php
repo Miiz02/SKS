@@ -7,14 +7,30 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index()
-    {
-        $attendances = Attendance::where('user_id', auth()->id())->get(); // Fetch attendance records for the authenticated user
-        $userName = auth()->user()->name; // Get the authenticated user's name
-    
-        return view('student.dashboard', compact('attendances', 'userName'));
+    public function index(Request $request)
+{
+    $query = Attendance::where('user_id', auth()->id());
+
+    // Initialize variables for sorting
+    $validSortFields = ['timestamp', 'ndp', 'course', 'reason']; // List of valid columns
+    $sortField = $request->get('sort_by', 'timestamp'); // Default sort field
+    $sortDirection = $request->get('sort_direction', 'asc'); // Default sort direction
+
+    // Check if the requested sort field is valid
+    if (in_array($sortField, $validSortFields)) {
+        $query->orderBy($sortField, $sortDirection);
+    } else {
+        // If not valid, default to sorting by 'timestamp'
+        $query->orderBy('timestamp', $sortDirection);
     }
-    
+
+    // Fetch attendance records for the authenticated user
+    $attendances = $query->get(); 
+    $userName = auth()->user()->name; // Get the authenticated user's name
+
+    return view('student.dashboard', compact('attendances', 'userName', 'sortField', 'sortDirection'));
+}
+
     public function create()
     {
         $userName = auth()->user()->name; // Get the authenticated user's name

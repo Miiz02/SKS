@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('star/template/vendors/css/vendor.bundle.base.css') }}">
   
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="{{ asset('star/template/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('star/template/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('star/template/js/select.dataTables.min.css') }}">
   
     <!-- Custom Styles -->

@@ -57,9 +57,9 @@ class StudentController extends Controller
         // Determine confirmed value based on user input
         $confirmedValue = null; // Default to null for Pending
         if ($request->attendance_status === 'present') {
-            $confirmedValue = 1; // Present
+            $confirmedValue = 'present'; // Present
         } elseif ($request->attendance_status === 'absent') {
-            $confirmedValue = 0; // Absent
+            $confirmedValue = 'absent'; // Absent
         }
     
         Attendance::create([

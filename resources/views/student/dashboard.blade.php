@@ -86,8 +86,8 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $attendance->user->name }}</td>
-                                        <td>{{ $attendance->ndp }}</td>
-                                        <td>{{ $attendance->course }}</td>
+                                        <td>{{ $attendance->user->ndp }}</td>
+                                        <td>{{ $attendance->user->kursus }}</td>
                                         <td>{{ $attendance->reason }}</td>
                                         <td>{{ $attendance->timestamp ? $attendance->timestamp->format('H:i A') : 'N/A' }}</td>
                                         <td>{{ $attendance->timestamp ? $attendance->timestamp->format('d/m/Y') : 'N/A' }}</td>

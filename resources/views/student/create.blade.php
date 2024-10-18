@@ -1,44 +1,90 @@
+
+
 {{-- resources/views/student/create.blade.php --}}
-@extends('layouts.default')
+@extends('layouts.star')
 
 @section('content')
-    <h1>Create Attendance Record</h1>
+<style>
+    .form-control {
+        border: 1px solid #ccc; /* Default border color */
+        border-radius: 4px; /* Optional: to round the edges */
+    }
 
-    <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+    .form-control:focus {
+        border-color: #6c757d; /* Change this to your desired dark color */
+        box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25); /* Optional: focus shadow */
+    }
 
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ $userName }}" readonly>
-        </div>
+    .custom-label {
+        padding-left: 5px; /* Adjust this value to control the space */
+        /* padding-right: 10px; Optional: additional space on the right */
+    }
 
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ $userEmail }}" readonly>
-        </div>
+    /* Adjust the margin of the radio input */
+    .form-check-input {
+        margin-right: 5px; /* Decrease this value to bring the circle closer to the label */
+    }
+</style>
 
-        <div>
-            <label>Attendance:</label>
-            <div>
-                <input type="radio" id="attend" name="attendance_status" value="attend" required>
-                <label for="attend">Attend</label>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="home-tab">
+                    <div class="d-sm-flex align-items-center justify-content-between border-bottom">
+                        <h1 style="font-weight: bold; padding-left: 30px;">Rekod Kehadiran</h1>
+                    </div>
+
+                    <div class="card card-rounded mt-4">
+                        <div class="card-body">
+                            <h3>Create Attendance Record</h3>
+
+                            <form action="{{ route('student.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+                                @csrf
+
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $userName }}" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $userEmail }}" readonly>
+                                </div>
+
+                                <h5>Kehadiran</h5>
+                                <div class="form-row">
+                                    <div class="form-check col">
+                                        <input type="radio" class="form-check-input" id="attend" name="attendance_status" value="present" required>
+                                        <label class="form-check-label custom-label" for="attend">Hadir</label>
+                                    </div>
+                                    <div class="form-check col">
+                                        <input type="radio" class="form-check-input" id="not_attend" name="attendance_status" value="absent">
+                                        <label class="form-check-label custom-label" for="not_attend">Tidak Hadir</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="timestamp">Timestamp</label>
+                                    <input type="datetime-local" class="form-control" id="timestamp" name="timestamp" 
+                                        value="{{ \Carbon\Carbon::now()->format('Y-m-d\TH:i') }}" required>
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label for="picture">Upload Picture</label>
+                                    <input type="file" class="form-control" id="picture" name="picture" accept="image/*">
+                                </div>
+
+                                <button type="submit" class="btn btn-success mt-4 me-2">
+                                    <i class="mdi mdi-folder-plus menu-icon"></i> Submit
+                                </button>
+                                <a href="{{ route('student.dashboard') }}" class="btn btn-light mt-4">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <input type="radio" id="not_attend" name="attendance_status" value="not_attend">
-                <label for="not_attend">Not Attend</label>
-            </div>
         </div>
-
-        <div>
-            <label for="timestamp">Timestamp:</label>
-            <input type="datetime-local" id="timestamp" name="timestamp" value="{{ \Carbon\Carbon::now()->format('Y-m-d\TH:i') }}" required>
-        </div>
-
-        <div>
-            <label for="picture">Upload Picture:</label>
-            <input type="file" id="picture" name="picture" accept="image/*">
-        </div>
-
-        <button type="submit">Create Attendance</button>
-    </form>
+    </div>
+</div>
 @endsection

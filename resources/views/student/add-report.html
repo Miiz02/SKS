@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Sekas | Laman Utama</title>
+  <title>Sekas | Kehadiran</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/feather/feather.css">
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
@@ -410,7 +410,7 @@
                 <div class="d-sm-flex align-items-center justify-content-between border-bottom">
                   <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                      <h1 style="font-weight: bold; padding-left: 30px;">Status Kehadiran</h1>
+                      <h1 style="font-weight: bold; padding-left: 30px;">Rekod Kehadiran</h1>
                     </li>
                   </ul>
                   <div>
@@ -422,6 +422,83 @@
                 </div>
                 <div class="tab-content tab-content-basic">
 
+                  <!-- Your data table here -->
+                  <div class="card card-rounded">
+                    <div class="card-body">
+                        <form class="forms-sample">
+                            <div class="form-group">
+                                <label for="nameInput">Name</label>
+                                <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="ndpInput">Ndp/No.Matrix</label>
+                                <input type="text" class="form-control" id="ndpInput" placeholder="Nombor Ndp">
+                            </div>
+                        
+                            <h5>Kehadiran</h5>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked>
+                                            Hadir
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2">
+                                            Tidak Hadir
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="courseInput">Kursus</label>
+                                <input type="text" class="form-control" id="courseInput" placeholder="Nombor Ndp">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="semesterInput">Semester</label>
+                                <input type="text" class="form-control" id="semesterInput" placeholder="Nombor Ndp">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="timeInput">Time</label>
+                                <input type="text" class="form-control" id="timeInput" placeholder="Nombor Ndp">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="dateInput">Date</label>
+                                <input type="text" class="form-control" id="dateInput" placeholder="Nombor Ndp">
+                            </div>
+                        
+                            <div class="form-group">
+                                <label>File upload</label>
+                                <input type="file" name="img[]" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                    </span>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="exampleTextarea1">Textarea</label>
+                                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                            </div>
+                        
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button type="button" class="btn btn-light">Cancel</button>
+                        </form>
+                        
+
+                    </div>
+                </div>
 
 
                 </div>

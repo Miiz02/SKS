@@ -6,9 +6,7 @@
         <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
             <img src="{{ asset('star/template/images/logo-mini.svg') }}" alt="logo mini">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="minimize">
-            <span class="icon-menu"></span>
-        </button>
+      
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-top">
         <ul class="navbar-nav mr-lg-2">

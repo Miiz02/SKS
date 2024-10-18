@@ -39,8 +39,8 @@ public function show(Request $request)
             'name' => 'required|string|max:255',
             'ndp' => 'required|string|max:10',
             'ic' => 'required|string|max:12',
-            'phone' => 'required|string|max:15',
-            'address' => 'nullable|string|max:255',
+            'telefon' => 'required|string|max:15',
+            'alamat' => 'nullable|string|max:255',
             'kursus' => 'required|string',
             'semester' => 'required|string',
         ]);

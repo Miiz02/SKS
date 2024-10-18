@@ -1,13 +1,12 @@
-<!-- partial:partials/_sidebar.html -->
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style="padding: 20px 10px;">
     <ul class="nav">
         <li class="nav-item">
-            <div class="d-flex sidebar-profile" style="align-items: center; padding: 10px; margin-bottom: 15px;"> <!-- Added margin-bottom -->
+            <div class="d-flex sidebar-profile" style="align-items: center; padding: 10px; margin-bottom: 15px;">
                 <div class="sidebar-profile-image" style="margin-right: 10px;">
                     <img src="{{ asset('star/template/images/faces/face8.jpg') }}" alt="Profile Image">
                 </div>
                 <div class="sidebar-profile-name">
-                    <p class="sidebar-name">{{ auth()->user()->name }}</p>
+                    <p class="sidebar-name" style="margin-bottom: 5px;">{{ auth()->user()->name }}</p>
                     <p class="sidebar-designation fw-bold">Pelajar</p>
                     <p class="sidebar-designation fw-bold">F04 (Software Development)</p>
                     <p class="sidebar-designation fw-bold">22123003</p>
@@ -22,14 +21,14 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('/student') }}">
+            <a class="nav-link" href="{{ route('student.dashboard') }}">
                 <i class="mdi mdi-home"></i>
                 <span>Laman Utama</span>
             </a>
         </li>
         <li class="nav-item nav-category">Rekod Kehadiran</li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('kehadiran') }}">
+            <a class="nav-link" href="{{ route('student.create') }}">
                 <i class="mdi mdi-library-plus"></i>
                 <span>Tambah Rekod</span>
             </a>

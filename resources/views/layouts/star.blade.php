@@ -48,35 +48,37 @@
   </div>
 
    <!-- JS Dependencies -->
-   <script src="{{ asset('star/template/vendors/js/vendor.bundle.base.js') }}"></script>
-  
-   <!-- Plugin js for this page -->
-   <script src="{{ asset('star/template/vendors/chart.js/Chart.min.js') }}"></script>
-   <script src="{{ asset('star/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-   <script src="{{ asset('star/template/vendors/progressbar.js/progressbar.min.js') }}"></script>
- 
-   <!-- inject:js -->
-   <script src="{{ asset('star/template/js/off-canvas.js') }}"></script>
-   <script src="{{ asset('star/template/js/hoverable-collapse.js') }}"></script>
-   <script src="{{ asset('star/template/js/template.js') }}"></script>
-   <script src="{{ asset('star/template/js/settings.js') }}"></script>
-   <script src="{{ asset('star/template/js/todolist.js') }}"></script>
-   <!-- endinject -->
- 
-   <!-- Custom js for this page -->
-   <script src="{{ asset('star/template/js/dashboard.js') }}"></script>
-   <script src="{{ asset('star/template/js/Chart.roundedBarCharts.js') }}"></script>
-   <script>
-    function sortTable(field) {
-        // Implement sorting logic here
-        // You can send an AJAX request to the server to fetch sorted data
-        // or sort the data on the client-side if it's available.
+<script src="{{ asset('star/template/vendors/js/vendor.bundle.base.js') }}"></script>
 
-        console.log('Sorting by:', field);
-        // For example, you can do an AJAX request or manipulate the DOM directly
-        // to rearrange your table rows based on the selected field.
+<!-- Plugin JS for This Page -->
+<script src="{{ asset('star/template/vendors/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('star/template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('star/template/vendors/progressbar.js/progressbar.min.js') }}"></script>
+
+<!-- Injected JS -->
+<script src="{{ asset('star/template/js/off-canvas.js') }}"></script>
+<script src="{{ asset('star/template/js/hoverable-collapse.js') }}"></script>
+<script src="{{ asset('star/template/js/template.js') }}"></script>
+<script src="{{ asset('star/template/js/settings.js') }}"></script>
+<script src="{{ asset('star/template/js/todolist.js') }}"></script>
+
+<!-- Custom JS for This Page -->
+<script src="{{ asset('star/template/js/dashboard.js') }}"></script>
+<script src="{{ asset('star/template/js/Chart.roundedBarCharts.js') }}"></script>
+
+<!-- Sort Table Logic -->
+<script>
+    function sortTable(field, direction = 'asc') {
+        // Redirect to the same route with sorting parameters
+        const url = new URL(window.location.href);
+        url.searchParams.set('sort_by', field);
+        url.searchParams.set('sort_direction', direction);
+
+        // Navigate to the new URL
+        window.location.href = url.toString();
     }
 </script>
+
 
 </body>
 

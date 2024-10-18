@@ -39,15 +39,15 @@
                                 </div>
                             
                                 <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                                    <input type="text" class="form-control" name="phone" 
-                                           value="{{ old('phone', $user->phone) }}" required>
+                                    <label for="telefon">Phone Number</label>
+                                    <input type="text" class="form-control" name="telefon" 
+                                           value="{{ old('telefon', $user->telefon) }}" required>
                                 </div>
                             
                                 <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" name="address" 
-                                           value="{{ old('address', $user->address) }}">
+                                    <label for="alamat">Address</label>
+                                    <input type="text" class="form-control" name="alamat" 
+                                           value="{{ old('alamat', $user->alamat) }}">
                                 </div>
                             
                                 <div class="form-group">

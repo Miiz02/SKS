@@ -14,9 +14,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'NDP',      // Ensure the case matches the database column
-        'Kursus',   // Ensure the case matches the database column
-        'Semester',  // Ensure the case matches the database column
+        'ndp',      // Ensure the case matches the database column
+        'kursus',   // Ensure the case matches the database column
+        'semester',  // Ensure the case matches the database column
+        'ic',  // Ensure the case matches the database column
+        'alamat',  // Ensure the case matches the database column
+        'telefon',  // Ensure the case matches the database column
     ];
     
     protected $hidden = [

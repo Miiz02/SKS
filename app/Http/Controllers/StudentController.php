@@ -12,7 +12,7 @@ class StudentController extends Controller
     {
         $query = Attendance::where('user_id', auth()->id());
     
-        $validSortFields = ['timestamp', 'ndp', 'course', 'reason'];
+        $validSortFields = ['timestamp', 'ndp', 'kursus', 'reason'];
         $sortField = $request->get('sort_by', 'timestamp');
         $sortDirection = $request->get('sort_direction', 'asc') === 'desc' ? 'desc' : 'asc';
     

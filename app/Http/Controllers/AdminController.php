@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attendance; // Ensure you import the Attendance model
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class WardenController extends SortingController
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Fetch all attendance records
-        $attendances = Attendance::with('user')->get(); // Assuming 'user' relationship exists to fetch user details
+        $query = Attendance::query(); // Adjust the query based on your requirements
 
-        return view('admin.dashboard', compact('attendances')); // Pass the data to the view
+        // Apply sorting using the base method
+        $query = $this->applySorting($request, $query);
+        
+        $attendances = $query->paginate(10)->appends($request->except('page')); // Retain other query parameters
+
+        return view('warden.dashboard', compact('attendances'));
     }
+
+    // Other methods...
 }

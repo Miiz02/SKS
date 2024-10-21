@@ -5,29 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class StudentController extends SortingController
 {
    
     public function index(Request $request)
     {
         $query = Attendance::where('user_id', auth()->id());
-    
-        $validSortFields = ['timestamp', 'ndp', 'course', 'sebab'];
-        $sortField = $request->get('sort_by', 'timestamp');
-        $sortDirection = $request->get('sort_direction', 'asc') === 'desc' ? 'desc' : 'asc';
-    
-        $sortField = in_array($sortField, $validSortFields) ? $sortField : 'timestamp';
-        $query->orderBy($sortField, $sortDirection);
-    
-        // Apply pagination and retain sorting parameters
-        $attendances = $query->paginate(10)->appends([
-            'sort_by' => $sortField,
-            'sort_direction' => $sortDirection,
-        ]);
-    
+
+        // Apply sorting using the base method
+        $query = $this->applySorting($request, $query);
+        
+        $attendances = $query->paginate(10)->appends($request->except('page')); // Retain other query parameters
+
         $userName = auth()->user()->name;
-    
-        return view('student.dashboard', compact('attendances', 'userName', 'sortField', 'sortDirection'));
+
+        return view('student.dashboard', compact('attendances', 'userName'));
     }
     
     public function create()

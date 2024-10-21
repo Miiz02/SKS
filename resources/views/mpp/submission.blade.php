@@ -7,7 +7,7 @@
             <tr>
                 <th>#</th>
                 <th>
-                    <a href="{{ route('mpp.dashboard', ['sort_by' => 'name', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('student.dashboard', ['sort_by' => 'name', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Name
                         @if (request('sort_by') === 'name')
@@ -16,7 +16,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('mpp.dashboard', ['sort_by' => 'ndp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('student.dashboard', ['sort_by' => 'ndp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         NDP
                         @if (request('sort_by') === 'ndp')
@@ -25,7 +25,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('mpp.dashboard', ['sort_by' => 'course', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('student.dashboard', ['sort_by' => 'course', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Kursus
                         @if (request('sort_by') === 'course')
@@ -34,16 +34,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('mpp.dashboard', ['sort_by' => 'semester', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
-                        style="text-decoration: none; color: inherit;">
-                        Semester
-                        @if (request('sort_by') === 'semester')
-                            <span>{{ request('sort_direction') === 'asc' ? '↑' : '↓' }}</span>
-                        @endif
-                    </a>
-                </th>
-                <th>
-                    <a href="{{ route('mpp.dashboard', ['sort_by' => 'reason', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('student.dashboard', ['sort_by' => 'reason', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Sebab
                         @if (request('sort_by') === 'reason')
@@ -52,7 +43,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('mpp.dashboard', ['sort_by' => 'timestamp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('student.dashboard', ['sort_by' => 'timestamp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Masa
                         @if (request('sort_by') === 'timestamp')
@@ -61,7 +52,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('mpp.dashboard', ['sort_by' => 'date', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('student.dashboard', ['sort_by' => 'date', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Tarikh
                         @if (request('sort_by') === 'date')
@@ -92,7 +83,11 @@
                     @endif
                 </td>
                 <td>
-                    <span>No action available</span>
+                    <form action="{{ route('mpp.confirm', $attendance->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" name="confirmed_status" value="attend" class="btn btn-success {{ $attendance->confirmed == 1 ? 'active' : 'inactive' }}">Attend</button>
+                        <button type="submit" name="confirmed_status" value="not_attend" class="btn btn-danger {{ $attendance->confirmed == 0 ? 'active' : 'inactive' }}">Not Attend</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -149,7 +144,32 @@
 </script>
 
 <style>
-    /* No button styles needed since buttons have been removed */
+    /* Style for inactive buttons */
+    .btn.inactive {
+        opacity: 0.5; /* Reduced opacity for inactive state */
+        font-size: 0.85rem; /* Smaller font size */
+        color: #fff; /* White text */
+        background-color: #6c757d; /* Gray background */
+    }
+    
+    .btn.active {
+        font-size: 1rem; /* Normal font size for active */
+    }
+    
+    /* Adjusting hover effect for active buttons */
+    .btn-success:hover.active {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+    .btn-danger:hover.active {
+        background-color: #c82333; /* Darker red on hover */
+    }
+
+    /* Ensure hover effect is applied even for inactive buttons */
+    .btn.inactive:hover {
+        opacity: 0.75; /* Slightly increase opacity on hover */
+        cursor: pointer; /* Change cursor to pointer */
+    }
 </style>
 
 @endsection

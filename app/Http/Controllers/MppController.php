@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance; // Ensure you import the Attendance model
 use Illuminate\Http\Request;
 
-class MppController extends Controller
+class MppController extends SortingController
 {
     public function index()
 {

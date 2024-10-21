@@ -1,13 +1,26 @@
 @extends('layouts.star')
 
 @section('content')
+<!-- Date Filter Form -->
+<div class="mb-3">
+    <form method="GET" action="{{ route('mpp.approve') }}">
+        <div class="input-group">
+            <input type="date" name="date" class="form-control" value="{{ request('date') }}" aria-label="Select Date">
+            <button class="btn btn-primary" type="submit">Filter</button>
+            @if(request('date')) <!-- Check if a date filter is applied -->
+                <a href="{{ route('mpp.approve') }}" class="btn btn-secondary ms-2">Cancel Filter</a>
+            @endif
+        </div>
+    </form>
+</div>
+
 <div class="table-responsive">
     <table class="table table-hover w-100" id="userDetails">
         <thead>
             <tr>
                 <th>#</th>
                 <th>
-                    <a href="{{ route('student.dashboard', ['sort_by' => 'name', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('mpp.approve', ['sort_by' => 'name', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Name
                         @if (request('sort_by') === 'name')
@@ -16,7 +29,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('student.dashboard', ['sort_by' => 'ndp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('mpp.approve', ['sort_by' => 'ndp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         NDP
                         @if (request('sort_by') === 'ndp')
@@ -25,7 +38,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('student.dashboard', ['sort_by' => 'course', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('mpp.approve', ['sort_by' => 'course', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Kursus
                         @if (request('sort_by') === 'course')
@@ -34,7 +47,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('student.dashboard', ['sort_by' => 'reason', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('mpp.approve', ['sort_by' => 'reason', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Sebab
                         @if (request('sort_by') === 'reason')
@@ -43,7 +56,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('student.dashboard', ['sort_by' => 'timestamp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('mpp.approve', ['sort_by' => 'timestamp', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Masa
                         @if (request('sort_by') === 'timestamp')
@@ -52,7 +65,7 @@
                     </a>
                 </th>
                 <th>
-                    <a href="{{ route('student.dashboard', ['sort_by' => 'date', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
+                    <a href="{{ route('mpp.approve', ['sort_by' => 'date', 'sort_direction' => request('sort_direction', 'asc') === 'asc' ? 'desc' : 'asc']) }}"
                         style="text-decoration: none; color: inherit;">
                         Tarikh
                         @if (request('sort_by') === 'date')
@@ -71,7 +84,6 @@
                 <td>{{ $attendance->user->name }}</td>
                 <td>{{ $attendance->user->ndp }}</td>
                 <td>{{ $attendance->user->course }}</td>
-                <td>{{ $attendance->user->semester }}</td>
                 <td>{{ $attendance->sebab ?? 'No reason provided' }}</td>
                 <td>{{ \Carbon\Carbon::parse($attendance->timestamp)->format('H:i') }}</td>
                 <td>{{ \Carbon\Carbon::parse($attendance->timestamp)->format('Y-m-d') }}</td>
@@ -85,14 +97,30 @@
                 <td>
                     <form action="{{ route('mpp.confirm', $attendance->id) }}" method="POST">
                         @csrf
-                        <button type="submit" name="confirmed_status" value="attend" class="btn btn-success {{ $attendance->confirmed == 1 ? 'active' : 'inactive' }}">Attend</button>
-                        <button type="submit" name="confirmed_status" value="not_attend" class="btn btn-danger {{ $attendance->confirmed == 0 ? 'active' : 'inactive' }}">Not Attend</button>
+                        @if(is_null($attendance->confirmed))
+                            <!-- Show both buttons if confirmed status is null -->
+                            <button type="submit" name="confirmed_status" value="1" class="btn btn-success">Attend</button>
+                            <button type="submit" name="confirmed_status" value="0" class="btn btn-danger">Not Attend</button>
+                        @else
+                            <!-- Show one button based on confirmed status -->
+                            @if ($attendance->confirmed == 1)
+                                <button type="button" class="btn btn-success" disabled>Attend</button>
+                                <button type="submit" name="confirmed_status" value="0" class="btn btn-danger">Not Attend</button>
+                            @elseif ($attendance->confirmed == 0)
+                                <button type="submit" name="confirmed_status" value="1" class="btn btn-success">Attend</button>
+                                <button type="button" class="btn btn-danger" disabled>Not Attend</button>
+                            @endif
+                        @endif
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-center mt-3">
+        {{ $attendances->links('pagination::bootstrap-4') }}
+    </div>
 </div>
 
 <!-- Modal for Image Viewing -->
@@ -118,57 +146,22 @@
             closeModal();
         }
     }
-
-    // Function to handle filtering options
-    function filterAll() {
-        setActiveOption('All');
-    }
-
-    function filterPassed() {
-        setActiveOption('Passed');
-    }
-
-    function filterFailed() {
-        setActiveOption('Failed');
-    }
-
-    function setActiveOption(option) {
-        const items = document.querySelectorAll('.dropdown-item');
-        items.forEach(item => {
-            item.classList.remove('active'); // Remove active class from all
-            if (item.textContent.trim() === option) {
-                item.classList.add('active'); // Add active class to selected option
-            }
-        });
-    }
 </script>
 
 <style>
-    /* Style for inactive buttons */
-    .btn.inactive {
-        opacity: 0.5; /* Reduced opacity for inactive state */
-        font-size: 0.85rem; /* Smaller font size */
-        color: #fff; /* White text */
-        background-color: #6c757d; /* Gray background */
-    }
-    
+    /* Style for active buttons */
     .btn.active {
-        font-size: 1rem; /* Normal font size for active */
+        font-weight: bold; /* Bold for active state */
+        opacity: 1; /* Ensure active buttons are fully opaque */
     }
     
-    /* Adjusting hover effect for active buttons */
-    .btn-success:hover.active {
-        background-color: #218838; /* Darker green on hover */
-    }
-
-    .btn-danger:hover.active {
-        background-color: #c82333; /* Darker red on hover */
-    }
-
-    /* Ensure hover effect is applied even for inactive buttons */
-    .btn.inactive:hover {
-        opacity: 0.75; /* Slightly increase opacity on hover */
-        cursor: pointer; /* Change cursor to pointer */
+    /* Style for disabled buttons */
+    .btn:disabled {
+        background-color: #6c757d; /* Grey background */
+        color: white; /* White text */
+        opacity: 0.65; /* Slightly transparent */
+        cursor: not-allowed; /* Not-allowed cursor */
+        border: 1px solid #6c757d; /* Match border with background */
     }
 </style>
 

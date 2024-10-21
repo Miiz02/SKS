@@ -8,12 +8,12 @@
                 <div class="sidebar-profile-name">
                     <p class="sidebar-name" style="margin-bottom: 5px;">{{ auth()->user()->name }}</p>
                     @if ($userRole === 'warden')
-    <p class="sidebar-designation fw-bold">Warden</p>
-@elseif ($userRole === 'mpp')
-    <p class="sidebar-designation fw-bold">Majlis Perwakilan Pelajar</p>
-@else
-    <p class="sidebar-designation fw-bold">Pelajar</p>
-@endif
+                        <p class="sidebar-designation fw-bold">Warden</p>
+                    @elseif ($userRole === 'mpp')
+                        <p class="sidebar-designation fw-bold">Majlis Perwakilan Pelajar</p>
+                    @else
+                        <p class="sidebar-designation fw-bold">Pelajar</p>
+                    @endif
 
                     <p class="sidebar-designation fw-bold">F04 (Software Development)</p>
                     <p class="sidebar-designation fw-bold">22123003</p>
@@ -21,44 +21,45 @@
             </div>
         </li>
         <li class="nav-item nav-category">Main Pages</li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('/profile/view') }}">
-                <i class="mdi mdi-account-circle-outline"></i>
-                <span>Profil</span>
-            </a>
-        </li>
+        @if($userRole === 'student')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('profile/view') ? 'active' : '' }}" href="{{ url('/profile/view') }}">
+                    <i class="mdi mdi-account-circle-outline"></i>
+                    <span>Profil</span>
+                </a>
+            </li>
+        @endif
 
-        {{-- Show only if user has 'student' role --}}
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('student.dashboard') }}">
+            <a class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}" href="{{ auth()->user()->hasRole('warden') ? route('admin.dashboard') : (auth()->user()->hasRole('mpp') ? route('mpp.dashboard') : route('student.dashboard')) }}">
                 <i class="mdi mdi-home"></i>
                 <span>Laman Utama</span>
             </a>
         </li>
 
         <li class="nav-item nav-category">Rekod Kehadiran</li>
-{{-- Example for student role --}}
-@if($userRole === 'student')
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('student.create') }}">
-        <i class="mdi mdi-library-plus"></i>
-        <span>Tambah Rekod</span>
-    </a>
-</li>
-@endif
 
-{{-- Example for MPP role --}}
-@if($userRole === 'mpp')
-<li class="nav-item">
-    <a class="nav-link" href="{{ url('penyerahan') }}">
-        <i class="mdi mdi-code-not-equal"></i>
-        <span>Penyerahan</span>
-    </a>
-</li>
-@endif
+        @if($userRole === 'student')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('student/create') ? 'active' : '' }}" href="{{ route('student.create') }}">
+                    <i class="mdi mdi-library-plus"></i>
+                    <span>Tambah Rekod</span>
+                </a>
+            </li>
+        @endif
+
+        @if($userRole === 'mpp')
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('mpp/approve') ? 'active' : '' }}" href="{{ url('/mpp/approve') }}">
+                    <i class="mdi mdi-code-not-equal"></i>
+                    <span>Pengesahan</span>
+                </a>
+            </li>
+        @endif
+
         <li class="nav-item nav-category">Pilihan</li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('tetapan') }}">
+            <a class="nav-link {{ request()->is('tetapan') ? 'active' : '' }}" href="{{ url('tetapan') }}">
                 <i class="mdi mdi-brightness-7"></i>
                 <span>Tetapan</span>
             </a>
@@ -72,6 +73,5 @@
                 <span>Log - Keluar</span>
             </a>
         </li>
-        
     </ul>
 </nav>

@@ -8,52 +8,52 @@ use App\Http\Controllers\ErrorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+// Welcome Page Route
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Dashboard route with middleware for authenticated users
+// Dashboard Route (Only Authenticated and Verified Users)
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Profile Management for Students
-// Profile Management for Students
-Route::middleware(['auth', 'role:student'])->group(function () {
+// Error Handling Route
+Route::get('/nobruh', [ErrorController::class, 'index'])->name('error.error');
+
+// Logout Route
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// Student Routes Group
+Route::middleware(['auth', 'role:student'])->prefix('student')->group(function () {
+    Route::get('/', [StudentController::class, 'index'])->name('student.dashboard');
+    Route::get('/create', [StudentController::class, 'create'])->name('student.create');
+    Route::post('/', [StudentController::class, 'store'])->name('student.store');
+    Route::get('/profile/view', [ProfileController::class, 'show'])->name('student.view');
+
+    // Profile Management for Students
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Error Handling
-Route::get('/nobruh', [ErrorController::class, 'index'])->name('error.error');
-
-// Logout route
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
-// Warden Role Routes
-Route::middleware(['role:warden'])->group(function () {
-    Route::get('/warden', [AdminController::class, 'index'])->name('admin.dashboard');
+// Warden Routes Group
+Route::middleware(['auth', 'role:warden'])->prefix('warden')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
-// Student Routes
-Route::middleware(['role:student'])->group(function () {
-    Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
-    Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
-    Route::post('/student', [StudentController::class, 'store'])->name('student.store');
-    Route::get('/profile/view', [ProfileController::class, 'show'])->name('student.view');
-});
-
-// MPP Role Routes
-Route::middleware(['role:mpp'])->group(function () {
-    Route::get('/mpp', [MppController::class, 'index'])->name('mpp.dashboard');
-    Route::post('/mpp/store', [MppController::class, 'store'])->name('mpp.store');
-    Route::post('/mpp/confirm/{id}', [MppController::class, 'confirm'])->name('mpp.confirm');
+// MPP Routes Group
+Route::middleware(['auth', 'role:mpp'])->prefix('mpp')->group(function () {
+    Route::get('/', [MppController::class, 'index'])->name('mpp.dashboard');
+    Route::post('/store', [MppController::class, 'store'])->name('mpp.store');
+    Route::post('/approve/{id}', [MppController::class, 'confirm'])->name('mpp.confirm');
+    Route::get('approve', [MppController::class, 'approve'])->name('mpp.approve');
+    
 });
 
 // Registration Routes
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'createStudent']);
 
-// Include additional authentication routes
-require __DIR__.'/auth.php';
+// Additional Authentication Routes
+require __DIR__ . '/auth.php';

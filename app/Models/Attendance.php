@@ -10,11 +10,13 @@ class Attendance extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'attendance_status',
-        'timestamp',
-        'picture',
+        'user_id', 
+        'attendance_status', 
+        'timestamp', 
+        'picture', 
+        'sebab'
     ];
+    
 
     // Define the casts for the model attributes
     protected $casts = [

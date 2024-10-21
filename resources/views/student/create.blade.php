@@ -1,5 +1,3 @@
-
-
 {{-- resources/views/student/create.blade.php --}}
 @extends('layouts.star')
 
@@ -17,7 +15,6 @@
 
     .custom-label {
         padding-left: 5px; /* Adjust this value to control the space */
-        /* padding-right: 10px; Optional: additional space on the right */
     }
 
     /* Adjust the margin of the radio input */
@@ -51,7 +48,7 @@
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" value="{{ $userEmail }}" readonly>
                                 </div>
-
+                                
                                 <h5>Kehadiran</h5>
                                 <div class="form-row">
                                     <div class="form-check col">
@@ -63,11 +60,16 @@
                                         <label class="form-check-label custom-label" for="not_attend">Tidak Hadir</label>
                                     </div>
                                 </div>
-
+                                
+                                <div class="form-group">
+                                    <label for="sebab">Sebab</label>
+                                    <textarea class="form-control" id="reason" name="sebab" rows="5"></textarea>
+                                </div>
+                                
                                 <div class="form-group mt-3">
                                     <label for="timestamp">Timestamp</label>
                                     <input type="datetime-local" class="form-control" id="timestamp" name="timestamp" 
-                                        value="{{ \Carbon\Carbon::now()->format('Y-m-d\TH:i') }}" required>
+                                        value="{{ \Carbon\Carbon::now()->format('Y-m-d\TH:i') }}" readonly required>
                                 </div>
 
                                 <div class="form-group mt-3">

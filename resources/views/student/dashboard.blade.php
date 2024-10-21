@@ -88,7 +88,7 @@
                                         <td>{{ $attendance->user->name }}</td>
                                         <td>{{ $attendance->user->ndp }}</td>
                                         <td>{{ $attendance->user->kursus }}</td>
-                                        <td>{{ $attendance->reason }}</td>
+                                        <td>{{ $attendance->sebab }}</td>
                                         <td>{{ $attendance->timestamp ? $attendance->timestamp->format('H:i A') : 'N/A' }}</td>
                                         <td>{{ $attendance->timestamp ? $attendance->timestamp->format('d/m/Y') : 'N/A' }}</td>
                                         <td>
@@ -119,9 +119,16 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                        </table>
+                            </table>
+                            
+                            <!-- Pagination Links -->
+                          <div class="d-flex justify-content-center mt-3">
+    {{ $attendances->links('pagination::bootstrap-4') }} <!-- Specify the Bootstrap 4 pagination view -->
+</div>
+
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

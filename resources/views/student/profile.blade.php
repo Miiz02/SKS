@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="mt-4">
-                <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profile</a>
+                <a href="{{ route('profildeve.edit') }}" class="btn btn-primary">Edit Profile</a>
             </div>
         </div>
     </div>

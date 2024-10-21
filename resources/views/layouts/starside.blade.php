@@ -7,7 +7,14 @@
                 </div>
                 <div class="sidebar-profile-name">
                     <p class="sidebar-name" style="margin-bottom: 5px;">{{ auth()->user()->name }}</p>
-                    <p class="sidebar-designation fw-bold">Pelajar</p>
+                    @if ($userRole === 'warden')
+    <p class="sidebar-designation fw-bold">Warden</p>
+@elseif ($userRole === 'mpp')
+    <p class="sidebar-designation fw-bold">Majlis Perwakilan Pelajar</p>
+@else
+    <p class="sidebar-designation fw-bold">Pelajar</p>
+@endif
+
                     <p class="sidebar-designation fw-bold">F04 (Software Development)</p>
                     <p class="sidebar-designation fw-bold">22123003</p>
                 </div>
@@ -20,25 +27,35 @@
                 <span>Profil</span>
             </a>
         </li>
+
+        {{-- Show only if user has 'student' role --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('student.dashboard') }}">
                 <i class="mdi mdi-home"></i>
                 <span>Laman Utama</span>
             </a>
         </li>
+
         <li class="nav-item nav-category">Rekod Kehadiran</li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('student.create') }}">
-                <i class="mdi mdi-library-plus"></i>
-                <span>Tambah Rekod</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('penyerahan') }}">
-                <i class="mdi mdi-code-not-equal"></i>
-                <span>Penyerahan</span>
-            </a>
-        </li>
+{{-- Example for student role --}}
+@if($userRole === 'student')
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('student.create') }}">
+        <i class="mdi mdi-library-plus"></i>
+        <span>Tambah Rekod</span>
+    </a>
+</li>
+@endif
+
+{{-- Example for MPP role --}}
+@if($userRole === 'mpp')
+<li class="nav-item">
+    <a class="nav-link" href="{{ url('penyerahan') }}">
+        <i class="mdi mdi-code-not-equal"></i>
+        <span>Penyerahan</span>
+    </a>
+</li>
+@endif
         <li class="nav-item nav-category">Pilihan</li>
         <li class="nav-item">
             <a class="nav-link" href="{{ url('tetapan') }}">
@@ -47,10 +64,14 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('logout') }}">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="mdi mdi-logout-variant"></i>
                 <span>Log - Keluar</span>
             </a>
         </li>
+        
     </ul>
 </nav>

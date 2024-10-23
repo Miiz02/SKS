@@ -40,14 +40,16 @@
             </li>
             <li class="nav-item dropdown user-dropdown">
                 <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="img-xs rounded-circle" src="{{ asset('star/template/images/faces/face8.jpg') }}" alt="Profile image">
+                    <img class="img-xs rounded-circle" src="{{ auth()->user()->profile_photo ? Storage::url(auth()->user()->profile_photo) : asset('star/template/images/faces/face8.jpg') }}" alt="Profile image">
                 </a>
-                <span class="nav-profile-name" style="margin-left: 8px;">{{ auth()->user()->name }}</span> <!-- Added margin-left -->
+                
+                <span class="nav-profile-name" style="margin-left: 8px;">{{ auth()->user()->name }}</span>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                     <a class="dropdown-item" href="#"><i class="typcn typcn-cog text-primary"></i> Tetapan</a>
-                    <a class="dropdown-item" href="#"><i class="typcn typcn-power text-primary"></i> Log-Keluar</a>
+                    <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="typcn typcn-power text-primary"></i> Log-Keluar</a>
                 </div>
             </li>
+            
         </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none" type="button" data-toggle="offcanvas">
             <span class="typcn typcn-th-menu"></span>

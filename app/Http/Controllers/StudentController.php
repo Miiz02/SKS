@@ -32,9 +32,9 @@ class StudentController extends SortingController
     public function store(Request $request)
 {
     $request->validate([
-        'attendance_status' => 'required|in:present,absent',
+        'attendance_status' => 'required|in:Hadir,Tidak Hadir',
         'timestamp' => 'required|date',
-        'sebab' => 'nullable|string|max:1000', // Validate 'reason'
+        'sebab' => 'nullable|string|max:1000',
         'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
 
@@ -46,18 +46,20 @@ class StudentController extends SortingController
         return back()->with('error', 'Failed to upload picture. Please try again.');
     }
 
-    $confirmedValue = $request->attendance_status === 'present' ? 'present' : 'absent';
+    // Directly use the attendance status from the form
+    $confirmedValue = $request->attendance_status;
 
     Attendance::create([
         'user_id' => auth()->id(),
         'attendance_status' => $confirmedValue,
         'timestamp' => date('Y-m-d H:i:s', strtotime($request->timestamp)),
         'picture' => $path,
-        'sebab' => $request->input('sebab'), // Save 'reason'
+        'sebab' => $request->input('sebab'),
     ]);
 
     return redirect()->route('student.dashboard')->with('success', 'Attendance recorded successfully!');
 }
+
 
     
 }

@@ -29,12 +29,12 @@ Route::middleware(['auth', 'role:student'])->prefix('student')->group(function (
     Route::get('/', [StudentController::class, 'index'])->name('student.dashboard');
     Route::get('/create', [StudentController::class, 'create'])->name('student.create');
     Route::post('/', [StudentController::class, 'store'])->name('student.store');
-    Route::get('/profile/view', [ProfileController::class, 'show'])->name('student.view');
-
+    
     // Profile Management for Students
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/view', [ProfileController::class, 'show'])->name('student.profile');
 });
 
 // Warden Routes Group

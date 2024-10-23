@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 
-class WardenController extends SortingController
+class AdminController extends SortingController
 {
     public function index(Request $request)
     {

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'alamat',
         'telefon',
         'role', // Ensure the role is included
+        'profile_photo', // Add this line for the profile photo
     ];
 
     protected $hidden = [

@@ -42,11 +42,11 @@ class MppController extends SortingController
         // Start the query, eager-loading the 'user' relationship
         $query = Attendance::with('user');
         
-        // Filter by date if provided
-        if ($request->has('date') && !empty($request->input('date'))) {
-            $date = Carbon::createFromFormat('Y-m-d', $request->input('date'));
-            $query->whereDate('created_at', $date); // Adjust this to your date column
-        }
+        // Get the date from the request or use today's date if not provided
+        $date = $request->input('date', Carbon::today()->toDateString());
+        
+        // Filter by the date (use your relevant date column, like 'created_at' or 'timestamp')
+        $query->whereDate('created_at', $date); // Adjust this to your date column
         
         // Apply sorting (from SortingController)
         $query = $this->applySorting($request, $query);

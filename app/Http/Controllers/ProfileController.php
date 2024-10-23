@@ -11,15 +11,14 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-
     // ProfileController.php
-public function show(Request $request)
-{
-    // Fetch the authenticated user
-    $student = $request->user();
+    public function show(Request $request)
+    {
+        // Fetch the authenticated user
+        $student = $request->user();
 
-    return view('student.profile', compact('student'));
-}
+        return view('student.profile', compact('student'));
+    }
 
     /**
      * Display the user's profile form.
@@ -43,11 +42,20 @@ public function show(Request $request)
             'alamat' => 'nullable|string|max:255',
             'kursus' => 'required|string',
             'semester' => 'required|string',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate the image
         ]);
-    
+
         $user = $request->user();
-        $user->update($validatedData);
-    
+        
+        // Handle file upload
+        if ($request->hasFile('profile_photo')) {
+            // Store the new profile photo
+            $path = $request->file('profile_photo')->store('profile_photos', 'public');
+            $validatedData['profile_photo'] = $path; // Add the photo path to the validated data
+        }
+
+        $user->update($validatedData); // Update user information with validated data
+
         return redirect()->route('profile.edit')->with('success', 'Profile updated successfully!');
     }
     

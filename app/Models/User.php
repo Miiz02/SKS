@@ -29,11 +29,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    // Automatically hash the password when set
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
+
 
     // Check if user has a specific role
     public function hasRole($role)

@@ -27,7 +27,7 @@
 
                 <!-- Email Address -->
                 <label for="login-email" class="inp">
-                    <input id="login-email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="&nbsp;">
+                    <input id="login-email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="&nbsp;" aria-label="Email" autocomplete="email">
                     <span class="label">Email</span>
                     <span class="focus-bg"></span>
                     @if($errors->has('email'))
@@ -37,10 +37,10 @@
 
                 <!-- Password -->
                 <label for="login-password" class="inp">
-                    <input id="login-password" type="password" class="form-control" name="password" required placeholder="&nbsp;">
+                    <input id="login-password" type="password" class="form-control" name="password" required placeholder="&nbsp;" aria-label="Password" autocomplete="current-password">
                     <span class="label">Password</span>
                     <span class="focus-bg"></span>
-                    <button type="button" class="toggle-password">
+                    <button type="button" class="toggle-password" aria-label="Toggle Password Visibility">
                         <i class="fas fa-eye"></i>
                     </button>
                     @if($errors->has('password'))
@@ -60,44 +60,43 @@
         <div class="form-container sign-up-container">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
-            
+
                 <!-- Name -->
                 <label for="name" class="inp">
-                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+                    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus aria-label="Name" autocomplete="name">
                     <span class="label">Name</span>
                     @if($errors->has('name'))
                         <span class="error-message">{{ $errors->first('name') }}</span>
                     @endif
                 </label>
-            
+
                 <!-- Email -->
                 <label for="email" class="inp">
-                    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required aria-label="Email" autocomplete="email">
                     <span class="label">Email</span>
                     @if($errors->has('email'))
                         <span class="error-message">{{ $errors->first('email') }}</span>
                     @endif
                 </label>
-            
+
                 <!-- Password -->
                 <label for="password" class="inp">
-                    <input id="password" type="password" name="password" required>
+                    <input id="password" type="password" name="password" required aria-label="Password" autocomplete="new-password">
                     <span class="label">Password</span>
                     @if($errors->has('password'))
                         <span class="error-message">{{ $errors->first('password') }}</span>
                     @endif
                 </label>
-            
+
                 <!-- Password Confirmation -->
                 <label for="password_confirmation" class="inp">
-                    <input id="password_confirmation" type="password" name="password_confirmation" required>
+                    <input id="password_confirmation" type="password" name="password_confirmation" required aria-label="Confirm Password" autocomplete="new-password">
                     <span class="label">Confirm Password</span>
                 </label>
-            
+
                 <!-- Submit -->
                 <button type="submit">Register</button>
             </form>
-            
         </div>
 
         <!-- Overlay Section -->
@@ -128,7 +127,6 @@
 
             togglePasswordButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    // Get the input field by going up to the closest label and then finding the input inside it
                     const passwordInput = this.closest('label').querySelector('input');
 
                     if (passwordInput.type === 'password') {

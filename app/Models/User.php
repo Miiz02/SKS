@@ -29,11 +29,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
-
     // Automatically hash the password when set
     public function setPasswordAttribute($value)
     {
